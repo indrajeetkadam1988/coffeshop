@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+
+body
+      {
+         background-image: url("coffee3.jpg");
+         background-repeat: no-repeat;
+         background-size: cover;
+         background-size: 100% 100%;
+      }
+       
+      {
+         width:100%;
+         height:100%;
+      }
+textarea 
+    {
+         width : 100%;
+    }
+
+
+.button 
+    {
+    background-color: #f1baa7;
+    border-radius: 25px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px 20px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 100px;
+    right: 35px;
+    
+    }
+
+
+</style>
+
+  <title>Indee Cafe</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid" >
+ <h1 style="color:white" ><center>Fill The Order <center></h1>
+  <form id="input-progress" role="form" ><br>
+  
+  
+<div class="form-group-row" >
+   <div class= "row">
+   <label class="col-xs-6" for=" first name" style="color:white">First Name:<input type="firstname" class="form-control" id="FirstName" placeholder=" FirstName"  name="first Name"></label>
+   <label  class="col-xs-6" for=" last name" style="color:white">Last Name:<input type="lastname" class="form-control" id="LastName" placeholder="LastName" name="last Name"></label>
+</div>
+     
+</div><br>
+
+<div class="form-group" >
+     <label style="color:white" for="address"> Drop Address:</label>
+     <input type="address" class="form-control" id="Address" placeholder="Drop Address" name="Address">
+</div><br><br>
+
+
+
+<div class="form-group">
+      <label for="ContactNo" style="color:white">Contact No:</label>
+      <input type="ContactNo" class="form-control" id="ContactNo" placeholder="Enter ContactNo" name="ContactNo">
+</div><br><br> 
+
+<div class="form-group">
+     <label for="Select Your Serve " style="color:white" > Select Your Serve </label><br>
+     <select name ="Select Your Serve" id="Select Your Serve"  class= "form-control" >
+     <option value="">--select--</option>
+     <option value="">Espresso (Short Black)</option>
+     <option value="">Double Espresso (Doppio)</option>
+     <option value="">Short Macchiato</option>
+     <option value="">Long Macchiato</option>
+     <option value="">Ristretto</option>
+     <option value="">Long Black (Americano)</option>
+     <option value="">Café Latte</option>
+     <option value="">Cappuccino</option>
+     <option value="">Flat White</option>
+     <option value="">Piccolo Latte</option>
+     <option value="">Mocha</option>
+     <option value="">Affogato</option>
+     </select>
+</div><br><br>
+   
+<div class="form-group">
+     <button type="button" class="btn btn-success">Confirm Your Order </button>
+</div><br>
+
+<h4 style="color:white"><storng> Order Progress:</storng></h4>
+      <div id="progress-inputs"  class="progress ">   
+      <div class="progress-bar progress-bar-success" role="progressbar" 
+      aria-valuenow="0" aria-valuemin="0" aria-vluemax="100" style="width:0%;">
+	  <span class="sr-only">0%</span>
+	  </div>
+	  </div>
+	
+	
+ <div class="form-group">
+<a href="https://indrajeetkadam.000webhostapp.com/IndeeCafe.html" class="button"> Back To Home</a>
+</div>
+	  
+	  
+	  
+</form>
+</div>
+
+<script>
+$(document).ready(function(){
+	function updateInputProgress(){
+		var filledFields = 0;
+		$("#input-progress").find("input, select, textarea").each(function(){
+			if($(this).val() != ""){
+				filledFields++;
+			}
+		});
+		
+		var percent = Math.ceil(100 * filledFields / totalFields);
+		$("#progress-inputs .progress-bar").attr("aria-valuenow", percent).width(percent + "%").find(".sr-only").html(percent + "% Complete");
+		
+		return percent;
+	}
+	
+	// fn Ip progress 
+	var totalFields = $("#input-progress").find("input, select, textarea").length;
+	$("#input-progress").click(function(){
+		updateInputProgress();
+	});
+	$("#input-progress .btn-success").click(function(){
+		var percent = updateInputProgress();
+		if(percent == 100){
+			alert(" Order Placed successfully!");
+		}
+	})
+	
+});
+
+</script>
+
+</body>
+</html>
+
+
